@@ -1,4 +1,4 @@
-# master
+# master portfolio
 
 ## General information
 Here are some material from some of the courses I have been enrolled during my M.Sc. in **Sound and Music Computing** 
