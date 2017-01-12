@@ -1,0 +1,18 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Problem formulation}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{General information}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Questions}{5}{0}{1}
+\beamer@sectionintoc {2}{Preliminaries}{7}{0}{2}
+\beamer@subsectionintoc {2}{1}{Exploring data using variance measure}{7}{0}{2}
+\beamer@subsectionintoc {2}{2}{Exploring data using correlation measure}{11}{0}{2}
+\beamer@sectionintoc {3}{Supervised learning}{14}{0}{3}
+\beamer@subsectionintoc {3}{1}{Training and testing subsets}{14}{0}{3}
+\beamer@subsectionintoc {3}{2}{Cross-validation}{16}{0}{3}
+\beamer@subsectionintoc {3}{3}{Classification on several subsets}{21}{0}{3}
+\beamer@sectionintoc {4}{Unsupervised learning}{27}{0}{4}
+\beamer@subsectionintoc {4}{1}{Clustering}{27}{0}{4}
+\beamer@subsectionintoc {4}{2}{Principal Component Analysis}{37}{0}{4}
+\beamer@sectionintoc {5}{Feature Selection}{44}{0}{5}
+\beamer@subsectionintoc {5}{1}{Assessments}{44}{0}{5}
+\beamer@subsectionintoc {5}{2}{Filter}{46}{0}{5}
+\beamer@subsectionintoc {5}{3}{Wrapper}{49}{0}{5}

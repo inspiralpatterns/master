@@ -1,0 +1,22 @@
+CC=gcc
+SRCS=example_cblas.c
+EXECUTABLE=example_cblas
+INCLUDES=
+CFLAGS=-c -Wall
+LFLAGS=
+LIBS=-lcblas
+OBJS=$(SRCS:.c=.o)
+
+all: $(SRCS) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJS)
+	$(CC) $(OBJS) $(LFLAGS) $(LIBS) -o $@
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
+
+clean:
+	rm *.o $(EXECUTABLE)
+
+run: $(EXECUTABLE)
+	./$<

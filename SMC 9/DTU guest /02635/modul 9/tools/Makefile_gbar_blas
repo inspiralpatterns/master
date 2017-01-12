@@ -1,0 +1,22 @@
+CC=gcc
+SRCS=example_blas.c
+EXECUTABLE=example_blas
+INCLUDES=
+CFLAGS=-c -Wall
+LFLAGS=-L/usr/lib64/atlas
+LIBS=-lf77blas
+OBJS=$(SRCS:.c=.o)
+
+all: $(SRCS) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJS)
+	$(CC) $(OBJS) $(LFLAGS) $(LIBS) -o $@
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
+
+clean:
+	rm *.o $(EXECUTABLE)
+
+run: $(EXECUTABLE)
+	./$<

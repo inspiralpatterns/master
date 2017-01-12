@@ -1,0 +1,1084 @@
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+\documentclass{beamer}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{siunitx}
+\usepackage{array} % needed for \arraybackslash
+\usepackage{graphicx}
+\usepackage{adjustbox} % for \adjincludegraphics
+\usepackage{ragged2e}
+\justifying
+
+% There are many different themes available for Beamer. A comprehensive
+% list with examples is given here:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+% You can uncomment the themes below if you would like to use a different
+% one:
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{boxes}
+%\usetheme{CambridgeUS}
+\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{default}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+\setbeamerfont{section in toc}{size=\footnotesize}
+\setbeamerfont{subsection in toc}{size=\scriptsize}
+\setbeamerfont{frametitle}{size=\small}
+
+\title{MSPR Exam Miniproject}
+
+% A subtitle is optional and this may be deleted
+\subtitle{Analysis on UCI Wine dataset}
+
+\author{Mattia~Paterna}
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Aalborg University, Copenhagen] % (optional, but mostly needed)
+{
+  \inst{}%
+  Sound and Music Computing\\
+  Aalborg University, Copenhagen
+%  \and
+%  \inst{2}%
+%  Department of Theoretical Philosophy\\
+%  University of Elsewhere
+}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date{}
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+\subject{Multivariate Statistics and Pattern Recognition}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% Let's get started
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+% Section and subsections will appear in the presentation overview
+% and table of contents.
+\section{Problem formulation}
+
+\subsection{General information}
+
+\begin{frame}{General information}{UCI Wine Data Set}
+  \begin{itemize}
+  \item {UCI wine is a multivariate dataset.
+    
+  }
+  \item {
+    It contains results of a chemical analysis of wines derived from three different cultivars.
+  }
+  \item {
+    178 observation, each of one has 13 features.
+  }
+  \item {
+    No missing values
+  }
+  \end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+
+\subsection{Questions}
+
+% You can reveal the parts of a slide one at a time
+% with the \pause command:
+\begin{frame}{Questions}
+  \begin{itemize}
+  \item {
+    which features are most relevant to draw differences between cultivars?
+  }
+  \item {   
+    is there any correlation between any features?
+  }
+  % You can also specify when the content should appear
+  % by using <n->:
+  \item {
+    how do wines differ when deriving from different cultivars?
+  }
+  \item {
+    is it possible to state precisely the belonging to a cultivars without any additional knowledge?
+  }
+  % or you can use the \uncover command to reveal general
+  % content (not just \items):
+%  \item {
+%    Fifth item. 
+%    \uncover<6->{Extra text in the fifth item.}
+%  }
+  \end{itemize}
+\end{frame}
+
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+
+\section{Preliminaries}
+
+\subsection{Exploring data using variance measure}
+
+\begin{frame}{Assessments}
+  \begin{itemize}
+  \item{
+    get the variance measure for each feature 
+    }
+  \item{
+    plot a group scatter - feature with the highest variance against each features
+  }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Feature 13 over 7}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\adjincludegraphics[width=1.2\linewidth,valign=t]{graphics/713.png}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+  \item{
+    best separation among classes 
+    }
+  \item{
+    class 1 is well spaced and divided
+  }
+  \item{
+    little overlap between class 2 and 3
+  }
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Feature 13 over 10}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\adjincludegraphics[width=1.2\linewidth,valign=t]{graphics/710.png}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+  \item{
+    good separation among classes 
+    }
+  \item{
+    class 1 and 3 are well spaced and divided
+  }
+  \item{
+    little overlap among all classes
+  }
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+
+\subsection{Exploring data using correlation measure}
+
+\begin{frame}{Assessments}
+  \begin{itemize}
+  \item{
+    get the correlation matrix 
+    }
+  \item{
+    plot a group scatter - feature with the highest correlation
+  }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Feature 7 over 6}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\adjincludegraphics[width=1.2\linewidth,valign=t]{graphics/76.png}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+  \item{
+    classes are not well separated 
+    }
+  \item{
+    large overlap between class 1 and 2
+  }
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+
+\section{Supervised learning}
+\subsection{Training and testing subsets}
+
+\begin{frame}{Assessments}
+\begin{block}{Criterion}
+Data set has been divided into two subsets
+\end{block}
+\begin{block}{Percentages}
+\begin{itemize}
+	\item{
+	training set: \SI{70}{\percent}
+	}
+	\item{
+	testing set: \SI{30}{\percent}
+	}
+\end{itemize}
+\end{block}
+\begin{block}{Choice method}
+data has been split randomly selecting shuffled indexes
+\end{block}
+%\begin{theorem}
+%There are separate environments for theorems, examples, definitions and proofs.
+%\end{theorem}
+%\begin{example}
+%Here is an example of an example block.
+%\end{example}
+\end{frame}
+
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+
+\subsection{Cross-validation}
+
+\begin{frame}{Cross-validation I}
+	\begin{itemize}
+		\item{
+		using PRTools function
+		}
+		\item{
+		\emph{leave-one-out} in size of S
+		}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Cross-validation II}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\begin{table}
+\begin{tabular}{l || c | c  }
+Classifier & Accuracy & Errors \\
+\hline \hline
+NMSC & 0.95 & 6  \\ 
+LDC & 0.99 & 1 \\
+QDC & 0.98 & 3 \\
+KNNC & 0.65 & 44 \\
+SVM & 0.45 & 69
+\end{tabular}
+\caption{{\scriptsize Accuracy and total errors number using cross-validation (run I)}}
+\end{table}
+
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+  \item{
+    LDC and QDC best accuracy and low errors score
+    }
+  \item{
+    non parametric classifiers work bad
+  }
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Cross-validation III}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\begin{table}
+\begin{tabular}{l || c | c  }
+Classifier & Accuracy & Errors \\
+\hline \hline
+NMSC & 0.98 & 3  \\ 
+LDC & 1 & 0 \\
+QDC & 0.984 & 2 \\
+KNNC & 0.69 & 38 \\
+SVM & 0.06 & 117
+\end{tabular}
+\caption{{\scriptsize Accuracy and total errors number using cross-validation (run II)}}
+\end{table}
+
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+  \item{
+    LDC best accuracy
+    }
+  \item{
+    SVM completely failed
+  }
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Cross-validation IV}
+  \begin{itemize}
+  \item
+    To sum up:
+    \begin{itemize}
+    \item
+      parametric classifiers seem work properly
+    \item
+      high accuracy values (> \SI{90}{\percent})
+      \item
+      non-parametric classifiers not successful
+      \item
+      SVM lowest accuracy in both trials
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+
+\subsection{Classification on several subsets}
+
+\begin{frame}{Subsets}
+	\begin{enumerate}
+		\item{
+		two highest \emph{variance} features
+		}
+		\item{
+		features with highest \emph{correlation} value
+		}
+		\item{
+		PCA projection on two highest eigenvalues 
+		}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Subset I (highest variance)}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\begin{table}
+\begin{tabular}{l || c | c  }
+Classifier & Accuracy & Errors \\
+\hline \hline
+NMSC & 0.85 & 8  \\ 
+LDC & 0.85 & 8 \\
+QDC & 0.79 & 11 \\
+KNNC & 0.62 & 20 \\
+SVM & 0.81 & 10
+\end{tabular}
+\caption{{\scriptsize Accuracy and total errors number for subset I}}
+\end{table}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+  \item{
+    more errors compared to cross-validation
+    }
+  \item{
+    not much difference between parametric classifiers and non-parametric ones
+  }
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Subset II (highest correlation)}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\begin{table}
+\begin{tabular}{l || c | c  }
+Classifier & Accuracy & Errors \\
+\hline \hline
+NMSC & 0.75 & 13  \\ 
+LDC & 0.75 & 13 \\
+QDC & 0.78 & 12 \\
+KNNC & 0.81 & 10 \\
+SVM & 0.79 & 11
+\end{tabular}
+\caption{{\scriptsize Accuracy and total errors number for subset II}}
+\end{table}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+  \item{
+    more errors compared to cross-validation
+    }
+  \item{
+    non parametric classifiers work \emph{better}
+  }
+  \item{
+  support vector machine most accurate
+  }
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Subset III (PCA projection)}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\begin{table}
+\begin{tabular}{l || c | c  }
+Classifier & Accuracy & Errors \\
+\hline \hline
+NMSC & 0.6 & 21  \\ 
+LDC & 0.62 & 20 \\
+QDC & 0.6 & 21 \\
+KNNC & 0.62 & 20 \\
+SVM & 0.66 & 18
+\end{tabular}
+\caption{{\scriptsize Accuracy and total errors number for subset III}}
+\end{table}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+  \item{
+    LDC parametric classifier with best accuracy
+    }
+  \item{
+    no relevant differences between parametric and non-parametric classifiers
+  }
+  \item{
+  support vector machine most accurate
+  }
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Subset V}
+  \begin{itemize}
+  \item
+    To sum up:
+    \begin{itemize}
+    \item
+      subset I (highest variance features) has highest accuracy values
+    \item
+      generally less difference between parametric and non-parametric classifiers
+      \item
+      SVM highest accuracy classifier for subset II and III
+          \end{itemize}
+  \end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+
+\section{Unsupervised learning}
+% Placing a * after \section means it will not show in the
+% outline or table of contents.
+\subsection{Clustering}
+
+\begin{frame}{Applied clustering method}
+	\begin{enumerate}
+		\item{
+		agglomerative clustering with single linkage
+		}
+		\item{
+		\emph{k-means} 
+		}
+		\item{
+		evaluation using \emph{variance-ratio} criterion
+		}
+		\item{
+		Gaussian Mixture Model
+		}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Agglomerative clustering I}
+\begin{columns}[t]
+\begin{column}{.4\textwidth}
+\begin{table}{Clusters/Classes}
+\begin{tabular}{l || c | c | c  }
+Cluster & 1 & 2 & 3 \\
+\hline \hline
+I & 13 & 69 & 48 \\ 
+II & 0 & 1 & 0 \\
+III & 1 & 0 & 0 \\
+IV & 5 & 0 & 0 \\
+V & 1 & 0 & 0 \\
+VI & 39 & 1 & 0
+\end{tabular}
+\caption{{\scriptsize Comparison between cluster assignment and true labels}}
+\end{table}
+\end{column}
+\begin{column}{.6\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/agg.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Agglomerative clustering II}
+	\begin{itemize}
+		\item{
+		optimal treshold = 52
+		}
+		\item{
+		classes 2 and 3 are not distinguished, class 1 is well defined though
+		}
+		\item{
+		5 elements don't belong to any cluster
+		}
+		\item{
+		class 1 is split between clusters I and VI
+		}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{K-means clustering I}
+\begin{columns}[t]
+\begin{column}{.4\textwidth}
+\begin{table}{Clusters/Classes}
+\begin{tabular}{l || c | c | c  }
+Cluster & 1 & 2 & 3 \\
+\hline \hline
+I & 28 & 13 & 15 \\ 
+II & 0 & 58 & 33 \\
+III & 31 & 0& 0 
+\end{tabular}
+\caption{{\scriptsize Comparison between cluster assignment and true labels}}
+\end{table}
+\end{column}
+\begin{column}{.6\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/kmeans.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{K-means clustering II}
+	\begin{itemize}
+		\item{
+		number of clusters to be found = 3
+		}
+		\item{
+		classes 2 and 3 are mostly combined in cluster II
+		}
+		\item{
+		class 1 is split between clusters I and III
+		}
+		\item{
+		none of the classes seem well separate
+		}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Variance-ration Criterion}
+\begin{columns}[t]
+\begin{column}{.3\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/eva5.png}
+\end{column}
+\begin{column}{.3\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/eva50.png}
+\end{column}
+\begin{column}{.3\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/eva100.png}
+\end{column}
+\end{columns}
+
+\vspace*{10pt}
+
+\begin{itemize}
+	\item{
+	optimal K increases when increasing overall inspected K
+	}
+	\item{
+	elbow rule is not appliable
+	}
+	\item{
+	it's not possible define an optimal number of cluster in the dataset
+	}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Gaussian Mixture Model I}
+\begin{columns}[t]
+\begin{column}{.4\textwidth}
+\begin{table}{Clusters/Classes}
+\begin{tabular}{l || c | c | c  }
+Cluster & 1 & 2 & 3 \\
+\hline \hline
+I & 59 & 1 & 0 \\ 
+II & 0 & 70 & 0 \\
+III & 0 & 0& 48 
+\end{tabular}
+\caption{{\scriptsize Comparison between cluster assignment and true labels}}
+\end{table}
+\end{column}
+\begin{column}{.6\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/gmm.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Gaussian Mixture Model II}
+	\begin{itemize}
+		\item{
+		number of Gaussian to be found = 3
+		}
+		\item{
+		always convergence
+		}
+		\item{
+		total errors number = 1
+		}
+		\item{
+		clusters fit classes separation at their best
+		}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Clustering}
+  \begin{itemize}
+  \item
+    To sum up:
+    \begin{itemize}
+    \item
+      generally clustering doesn't work well
+    \item
+      variance-ratio criterion doesn't find optimal K
+    \item
+      GMM however performs an excellent clustering
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+\subsection{Principal Component Analysis}
+
+\begin{frame}{PCA on covariance matrix I}
+\begin{columns}[t]
+\begin{column}{.3\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/varcum.png}
+\end{column}
+\begin{column}{.3\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/varscore.png}
+\end{column}
+\begin{column}{.3\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/vareig.png}
+\end{column}
+\end{columns}
+
+\vspace*{10pt}
+
+\begin{itemize}
+	\item{
+	reduction to two highest eigenvalues
+	}
+	\item{
+	preserved variance: > \SI{99}{\percent}
+	}
+	\item{
+	good classes separation
+	}
+	\item{
+	eigenvector contribution from a single feature
+	}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{PCA on covariance matrix II}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\adjincludegraphics[width=1.2\linewidth,valign=t]{graphics/513.png}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+\item{
+  plot using detected features from PCA
+  }
+\begin{itemize}
+  \item{
+    result is not clear
+    }
+  \item{
+    large overlap between class 2 and 3
+  }
+  \end{itemize}
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{PCA on correlation matrix I}
+\begin{columns}[t]
+\begin{column}{.3\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/corcum.png}
+\end{column}
+\begin{column}{.3\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/corscore.png}
+\end{column}
+\begin{column}{.3\textwidth}
+\adjincludegraphics[width=1.1\linewidth,valign=t]{graphics/coreig.png}
+\end{column}
+\end{columns}
+
+\vspace*{10pt}
+
+\begin{itemize}
+	\item{
+	reduction to two highest eigenvalues
+	}
+	\item{
+	preserved variance: \SI{55}{\percent}
+	}
+	\item{
+	no useful classes separation
+	}
+	\item{
+	main features contribution for first eigenvector: 7,8
+	}
+	\item{
+	main features contribution for second eigenvector: 10,1
+	}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{PCA on correlation matrix II}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\adjincludegraphics[width=1.2\linewidth,valign=t]{graphics/710.png}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+\item{
+  plot using feature 7 over 10
+  }
+\begin{itemize}
+  \item{
+    same features as using variance measure
+    }
+  \item{
+    good separation between classes
+  }
+  \end{itemize}
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{PCA on correlation matrix III}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\adjincludegraphics[width=1.2\linewidth,valign=t]{graphics/81.png}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+\item{
+  plot using feature 8 over 1
+  }
+\begin{itemize}
+  \item{
+    result is much confused
+    }
+  \item{
+    great overlap among all classes
+  }
+  \end{itemize}
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Principal Component Analysis}
+  \begin{itemize}
+  \item
+    To sum up:
+    \begin{itemize}
+    \item
+      variance is well preserved using covariance matrix
+    \item
+      correlation matrix doesn't give meaningful results
+    \item
+      features 7,10 and 13 seem the most relevant to describe the data set
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+%-------------------------------------------------------
+%-------------------------------------------------------
+\section{Feature Selection}
+\subsection{Assessments}
+
+\begin{frame}{Assessments}
+\begin{block}{Goodness of Subset Criterion}
+Filter and wrapper
+\end{block}
+\begin{block}{Data set split technique for wrapper}
+\begin{itemize}
+	\item{
+	training set: \SI{70}{\percent}
+	}
+	\item{
+	validation set: \SI{20}{\percent} of training set
+	}
+	\item{
+	testing set: \SI{30}{\percent}
+	}
+\end{itemize}
+\end{block}
+\end{frame}
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+\subsection{Filter}
+
+\begin{frame}{Filter I}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\adjincludegraphics[width=1.2\linewidth,valign=t]{graphics/filter.png}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+\item{
+  correlate each feature with true labels
+  }
+\begin{itemize}
+  \item{
+    highest correlation for features 8, 4
+    }
+  \item{
+    great overlap between classes
+  }
+  \end{itemize}
+  \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Filter II}
+\begin{columns}[t]
+\begin{column}{.4\textwidth}
+\begin{table}
+\begin{tabular}{l || c | c  }
+Classifier & Accuracy & Errors \\
+\hline \hline
+NMSC & 0.61 & 49  \\ 
+LDC & 0.61 & 49 \\
+QDC & 0.58 & 52 \\
+KNNC & 0.46 & 67 \\
+SVM & 0.52 & 60
+\end{tabular}
+\caption{{\scriptsize Accuracy and total errors number (subset with feature 8,4)}}
+\end{table}
+
+\end{column}
+\begin{column}{.6\textwidth}
+	\begin{itemize}
+	\item{
+	cross-validation using reduced data set
+	}
+	\item{
+	all classifiers are not accurate
+	}
+	\item{
+	far from accuracy using the whole data set
+	}
+	\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+\subsection{Wrapper}
+
+\begin{frame}{Wrapper I}{General information}
+  \begin{itemize}
+  \item {feature selection using \textbf{forward selection} scheme
+  }
+  \item {
+    features to be selected = 2
+   }
+  \item {
+    predictor trained on training data
+  }
+  \item {
+    features selection based on best accuracy when tested on validation set
+  }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Wrapper II}
+\begin{columns}[t]
+\begin{column}{.5\textwidth}
+\begin{table}
+\begin{tabular}{l || c | c | c  }
+Classifier & Feat & Accuracy & Errors \\
+\hline \hline
+NMSC & 7,1 & 0,87 & 7  \\ 
+LDC & 7,1 & 0,87 & 7 \\
+QDC & 7,1 & 0,89 & 6 \\
+KNNC & 13,11 & 0,66 & 18 \\
+SVM & 13,5 & 0,83 & 9
+\end{tabular}
+\caption{{\scriptsize Features selected and accuracy for each classifier using forward selection}}
+\end{table}
+
+\end{column}
+\begin{column}{.4\textwidth}
+	\begin{itemize}
+	\item{
+	good overall accuracy
+	}
+	\item{
+	no relevant differences parametric and non-parametric classifiers
+	}
+	\item{
+	exception: knnc
+	}
+	\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Feature Selection}
+  \begin{itemize}
+  \item
+    To sum up:
+    \begin{itemize}
+    \item
+      filter criterion gives not relevant features
+    \item
+      classification over that subset performs quite bad
+    \item
+      wrapper criterion is better
+      \item
+      features selected are the same detected in PCA and in preliminaries
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+%-------------------------------------------------------
+%-------------------------------------------------------
+\section*{Summary}
+
+\begin{frame}{Conclusion I}
+  \begin{itemize}
+  \item
+    \alert{cross-validation} gives the best accuracy for parametric classifiers, but works quite bad with non-parametric ones
+  \item
+    \alert{subsets} doesn't provide better accuracy, but in most cases SVM is the most accurate classifier
+  \item
+    \alert{clustering} seems not work properly, except Gaussian Mixture Model
+    \item
+    generally, \alert{unsupervised learning} is not excellent in get the belonging to the exact class
+   \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Conclusion II}
+  \begin{itemize}
+  \item
+    \alert{PCA} on covariance matrix preserves a high variance value, but classification on that score is however the worst one
+    \item
+    Features underlined from both PCA and features selection provide a good 2-D representation of the entire dataset
+    \item
+    but, we should guess that \alert{classification on the entire data set} is the most successful way to analyze it - probably because of its small dimensions
+   \end{itemize}
+\end{frame}
+
+
+
+
+% All of the following is optional and typically not needed. 
+%\appendix
+%\section<presentation>*{\appendixname}
+%\subsection<presentation>*{For Further Reading}
+%
+%\begin{frame}[allowframebreaks]
+%  \frametitle<presentation>{For Further Reading}
+%    
+%  \begin{thebibliography}{10}
+%    
+%  \beamertemplatebookbibitems
+%  % Start with overview books.
+%
+%  \bibitem{Author1990}
+%    A.~Author.
+%    \newblock {\em Handbook of Everything}.
+%    \newblock Some Press, 1990.
+% 
+%    
+%  \beamertemplatearticlebibitems
+%  % Followed by interesting articles. Keep the list short. 
+%
+%  \bibitem{Someone2000}
+%    S.~Someone.
+%    \newblock On this and that.
+%    \newblock {\em Journal of This and That}, 2(1):50--100,
+%    2000.
+%  \end{thebibliography}
+%\end{frame}
+
+\end{document}
+
+

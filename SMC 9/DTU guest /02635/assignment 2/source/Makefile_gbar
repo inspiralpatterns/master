@@ -1,0 +1,23 @@
+CC=gcc
+SRCS=solve.c linalg.c
+EXECUTABLE=solve
+CFLAGS=-g -Wall -Wextra
+LFLAGS=-L/usr/lib64/atlas
+LIBS=-llapack -lf77blas -latlas -lm
+INCLUDES=
+
+OBJS=$(SRCS:.c=.o)
+
+all: $(SRCS) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJS)
+	$(CC) $(OBJS) $(LFLAGS) $(LIBS) -o $@
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
+
+clean:
+	rm *.o $(EXECUTABLE)
+
+run: $(EXECUTABLE)
+	./$<
