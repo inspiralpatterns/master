@@ -40,6 +40,7 @@ This folder contains:
 - Interaction performance (only the exam project, mainly in *C++* and Cycling '74 *Max*)
 - Sound and Signal Music Analysis (only the exam project in *Matlab*, more code will be added from the next month)
 - a very first contract of the main project. (For the whole code a separate repository exists.)
+- Modelling physical Systems (only the exam project, mainly in *Matlab*)
 
 ### SMC 9
 This folder contains:
