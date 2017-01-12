@@ -47,6 +47,9 @@ This folder contains:
 - 02635 | Mathematical Software Programming (in *C*, Fall 2016, DTU)
 - 02393 | Programming in C++ (Fall 2016, DTU)
 
+### papers
+This folder contains the writings that I have been written in collaboration with some fellow students throughout the master programme in order to fulfill the examination criteria for the so-called *semester projects*.
+
 For further information regarding the courses content and any literature see 
 [here](http://www.en.aau.dk/education/master/sound-and-music-computing) and
 [here](http://kurser.dtu.dk).
