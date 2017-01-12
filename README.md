@@ -9,7 +9,7 @@ in several languages (e.g. Matlab, C/C++ and specifically, the Fall 2016 semeste
 Denmark) and audio signal processing topics (*Sound and signal Music Analysis, Spring 2016). 
 
 Some of them are still in progress, and this is intended as a partial demonstration of the covered topics, acquired skills and objectives
-of the courses within the master programme.
+of the courses within the master programme. The repository will be therefore constantly updated.
 
 Together with the courses (either named with their number or with their acronym), here all the project I've done take place.
 All these projects are group-based projects except the last one, namely SMC9.
