@@ -33,13 +33,13 @@ __________________________________________________
 This folder contains:
 - Multivariate Statistics and Pattern Recognition (mainly in *Matlab*)
 - Sound processing (only the exam project, mainly *Cycling '74 Max*)
-- main project (only an internal report and some Matlab script. For the whole code a separate repository exists.)
+- main project (only an internal report and some Matlab script. For the whole code a separate repository exists. See article in /paper)
 
 ### SMC 8
 This folder contains:
 - Interaction performance (only the exam project, mainly in *C++* and Cycling '74 *Max*)
 - Sound and Signal Music Analysis (only the exam project in *Matlab*, more code will be added from the next month)
-- a very first contract of the main project. (For the whole code a separate repository exists.)
+- a very first contract of the main project. (For the whole code a separate repository exists. See report in /papers)
 - Modelling physical Systems (only the exam project, mainly in *Matlab*)
 
 ### SMC 9
@@ -47,6 +47,7 @@ This folder contains:
 - 02632 | Introduction to programming and Data Processing (in *Matlab*, August 2016, DTU)
 - 02635 | Mathematical Software Programming (in *C*, Fall 2016, DTU)
 - 02393 | Programming in C++ (Fall 2016, DTU)
+- Project | scripts and data set for the semester project (see report in /papers)
 
 ### papers
 This folder contains the writings that I have been written in collaboration with some fellow students throughout the master programme in order to fulfill the examination criteria for the so-called *semester projects*.
