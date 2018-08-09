@@ -1,7 +1,7 @@
 # master portfolio
 
 ## General information
-Here are some material from my M.S. in Engineering *Sound and Music Computing* at AAlborg Universitet, Kobehnavn. The master spans a time period from September, 2015 to June, 2017.
+Here is some material from my M.S. in Engineering *Sound and Music Computing* at AAlborg Universitet, Kobehnavn. The master spans a time period from September, 2015 to June, 2017.
 
 The course material range from basics of statistics (*Multivariate Statistics and Pattern Recognition*), programming (the SMC 9 folder, as guest student at *DTU*, Technical University of Denmark) and audio signal processing topics (*Sound and signal Music Analysis*). 
 
